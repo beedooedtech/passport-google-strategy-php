@@ -1,9 +1,9 @@
 <?php
 
-namespace GooglePassport\Strategies;
+namespace BeedooEdtech\Passport\Strategy;
 
+use BeedooEdtech\Passport\Strategy\Strategy;
 use League\OAuth2\Client\Provider\Google;
-use PassportStrategy\Strategy;
 
 class GoogleStrategy implements Strategy
 {
