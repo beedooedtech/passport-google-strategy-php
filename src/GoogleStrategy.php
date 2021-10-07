@@ -3,7 +3,7 @@
 namespace GooglePassport\Strategies;
 
 use League\OAuth2\Client\Provider\Google;
-use GooglePassport\Contracts\Strategy;
+use PassportStrategy\Strategy;
 
 class GoogleStrategy implements Strategy
 {
