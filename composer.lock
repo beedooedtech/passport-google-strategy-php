@@ -4,8 +4,58 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f45ff5aef754b031e9c9eb20de0242f",
+    "content-hash": "2630d350cf8fdf83cf27476d80b01561",
     "packages": [
+        {
+            "name": "beedooedtech/strategy-php",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/beedooedtech/passport-strategy.git",
+                "reference": "c2a303abfeea07a4563fe1a7819208656e168644"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/beedooedtech/passport-strategy/zipball/c2a303abfeea07a4563fe1a7819208656e168644",
+                "reference": "c2a303abfeea07a4563fe1a7819208656e168644",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PassportStrategy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Santana",
+                    "email": "igor.santana@beedoo.com.br"
+                }
+            ],
+            "description": "Passport PHP SDK",
+            "keywords": [
+                "SSO",
+                "beedoo",
+                "beedoo.com.br",
+                "edtech",
+                "oauth"
+            ],
+            "support": {
+                "issues": "https://github.com/beedooedtech/passport-strategy/issues",
+                "source": "https://github.com/beedooedtech/passport-strategy/tree/1.0.1"
+            },
+            "time": "2021-10-07T00:12:28+00:00"
+        },
         {
             "name": "guzzlehttp/guzzle",
             "version": "7.3.0",
