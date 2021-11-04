@@ -3,7 +3,6 @@
 namespace BeedooEdtech\Passport\Strategy;
 
 use League\OAuth2\Client\Provider\Google;
-use BeedooEdtech\Passport\Strategy\Strategy;
 
 class AbstractGoogle
 {
@@ -31,6 +30,8 @@ class AbstractGoogle
         $this->buildCredentialSettings($clientId, $clientSecret, $redirectUri);
 
         $this->provider = new Google($this->credential);
+
+        $this->authorize();
     }
 
     public function redirect(): void
@@ -55,25 +56,42 @@ class AbstractGoogle
 
     protected function authorize()
     {
-        if (!empty($_GET['error'])) {
-            // Got an error, probably user denied access
-            exit('Got error: ' . htmlspecialchars($_GET['error'], ENT_QUOTES, 'UTF-8'));
+        if (isset($_GET['code'])) {
 
-        } elseif (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])) {
-            // State is invalid, possible CSRF attack in progress
-            unset($_SESSION['oauth2state']);
-            exit('Invalid state');
-        
-        } else {
-            $this->accessToken = $this->provider->getAccessToken('authorization_code', [
-                'code' => $_GET['code']
-            ]);
-        
-            try {
-                $this->ownerDetails = $this->provider->getResourceOwner($this->accessToken);
-            } catch (\Exception $e) {
-                exit('Something went wrong: ' . $e->getMessage());
+            if (! $this->ownerDetails) {
+                return;
+            }
+    
+            if ($this->deniedAccess() == false && $this->stateIsInvalid() == false) {
+                $this->accessToken = $this->provider->getAccessToken('authorization_code', [
+                    'code' => $_GET['code']
+                ]);
+                
+                try {
+                    $this->ownerDetails = $this->provider->getResourceOwner($this->accessToken);
+                } catch (\Exception $e) {
+                    exit('Something went wrong: ' . $e->getMessage());
+                }
             }
         }
+    }
+
+    private function deniedAccess()
+    {
+        if (!empty($_GET['error'])) {
+            exit('Got error: ' . htmlspecialchars($_GET['error'], ENT_QUOTES, 'UTF-8'));
+        }
+        
+        return false;
+    }
+
+    private function stateIsInvalid()
+    {
+        if (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])) {
+            unset($_SESSION['oauth2state']);
+            exit('Invalid state');
+        }
+
+        return false;
     }
 }

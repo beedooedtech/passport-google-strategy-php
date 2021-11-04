@@ -13,37 +13,31 @@ class GoogleStrategy extends AbstractGoogle implements StrategyInterface
 
     public function getId()
     {
-        $this->authorize();
         return $this->ownerDetails->getId();
     }
 
     public function getName()
     {
-        $this->authorize();
         return $this->ownerDetails->getName();
     }
 
     public function getFirstName()
     {
-        $this->authorize();
         return $this->ownerDetails->getFirstName();
     }
 
     public function getLastName()
     {
-        $this->authorize();
         return $this->ownerDetails->getLastName();
     }
 
     public function getEmail()
     {
-        $this->authorize();
         return $this->ownerDetails->getEmail();
     }
 
     public function getAvatar()
     {
-        $this->authorize();
         return $this->ownerDetails->getAvatar();
     }
 }
