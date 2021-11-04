@@ -58,7 +58,7 @@ class AbstractGoogle
     {
         if (isset($_GET['code'])) {
 
-            if (! $this->ownerDetails) {
+            if ($this->ownerDetails) {
                 return;
             }
     
